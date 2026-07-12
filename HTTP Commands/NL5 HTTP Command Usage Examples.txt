@@ -1,0 +1,163 @@
+NL5 HTTP Command Usage Examples
+All HTTP command examples based on the NL5 documentation are listed below. Note that commands are case-sensitive.
+I. General Functions
+1. Function: NL5_GetInfo
+¡ð Objective: Retrieve NL5 version information and date.
+¡ð Command: http://localhost/?NL5_GetInfo
+2. Function: NL5_New
+¡ð Objective: Create a new simulation document and return the document handle.
+¡ð Command: http://localhost/?NL5_New
+3. Function: NL5_Open
+¡ð Objective: Open the simulation file named "power_stage.nl5".
+¡ð Command: http://localhost/?NL5_Open,power_stage.nl5
+4. Function: NL5_Save
+¡ð Objective: Save the current active document as "backup.nl5".
+¡ð Command: http://localhost/?NL5_Save,backup.nl5
+5. Function: NL5_Close
+¡ð Objective: Close the current simulation document.
+¡ð Command: http://localhost/?NL5_Close
+6. Function: NL5_Show
+¡ð Objective: Activate and display the schematic window for the document with handle 1.
+¡ð Command: http://localhost/?NL5_Show,1
+7. Function: NL5_GetActive
+¡ð Objective: Get the handle of the current active document.
+¡ð Command: http://localhost/?NL5_GetActive
+8. Function: NL5_GetParam
+¡ð Objective: Get the resistance value of component R1.
+¡ð Command: http://localhost/?NL5_GetParam,R1.R
+9. Function: NL5_SetParam
+¡ð Objective: Set the capacitance of component C1 to 10uF.
+¡ð Command: http://localhost/?NL5_SetParam,C1.C=10u
+10. Function: NL5_DisableCmp
+¡ð Objective: Disable components S1 and S2.
+¡ð Command: http://localhost/?NL5_DisableCmp,S1,S2
+11. Function: NL5_EnableCmp
+¡ð Objective: Enable component D1.
+¡ð Command: http://localhost/?NL5_EnableCmp,D1
+12. Function: NL5_SetCmpState
+¡ð Objective: Set the initial state of switch Q1 to "short".
+¡ð Command: http://localhost/?NL5_SetCmpState,Q1,short
+II. Transient Simulation Instructions
+13. Function: NL5_GetTracesSize
+¡ð Objective: Get the total number of traces in the current transient simulation.
+¡ð Command: http://localhost/?NL5_GetTracesSize
+14. Function: NL5_AddTrace
+¡ð Objective: Add a current signal trace for R1.
+¡ð Command: http://localhost/?NL5_AddTrace,I,R1
+15. Function: NL5_DeleteTrace
+¡ð Objective: Delete the transient trace at index 2.
+¡ð Command: http://localhost/?NL5_DeleteTrace,2
+16. Function: NL5_GetTrace
+¡ð Objective: Get the index and handle of the trace named "V(out)".
+¡ð Command: http://localhost/?NL5_GetTrace,V(out)
+17. Function: NL5_GetTraceValue
+¡ð Objective: Get the peak-to-peak (pp) value of trace "V(L1)".
+¡ð Command: http://localhost/?NL5_GetTraceValue,V(L1),pp
+18. Function: NL5_SetTrace
+¡ð Objective: Set the color of the trace at index 0 to red.
+¡ð Command: http://localhost/?NL5_SetTrace,0,color=red
+19. Function: NL5_ShowTran
+¡ð Objective: Open the transient waveform display window.
+¡ð Command: http://localhost/?NL5_ShowTran
+20. Function: NL5_SetScreen
+¡ð Objective 1: Set the waveform window horizontal start time to 0.1s and display span to 0.01s.
+¡ð Command 1: http://localhost/?NL5_SetScreen,start=0.1,screen=0.01
+¡ð Objective 2: Separate all waveforms vertically, using individual vertical axes.
+¡ð Command 2: http://localhost/?NL5_SetScreen,separate=on
+21. Function: NL5_Cursors
+¡ð Objective: Enable cursors and place the left cursor at the 0.05s position.
+¡ð Command: http://localhost/?NL5_Cursors,on,left=0.05
+22. Function: NL5_Start
+¡ð Objective: Start transient simulation with a step size of 1u.
+¡ð Command: http://localhost/?NL5_Start,step=1u
+23. Function: NL5_Pause
+¡ð Objective: Pause the ongoing transient simulation.
+¡ð Command: http://localhost/?NL5_Pause
+24. Function: NL5_Continue
+¡ð Objective: Continue simulation and extend the simulation window duration to 0.2s.
+¡ð Command: http://localhost/?NL5_Continue,screen=0.2
+25. Function: NL5_Stop
+¡ð Objective: Stop the current transient simulation.
+¡ð Command: http://localhost/?NL5_Stop
+26. Function: NL5_SaveIC
+¡ð Objective: Save the initial conditions of the current simulation.
+¡ð Command: http://localhost/?NL5_SaveIC
+27. Function: NL5_SaveAsWithIC
+¡ð Objective: Save as a new file "state.nl5" and save the current state as the initial condition for that file.
+¡ð Command: http://localhost/?NL5_SaveAsWithIC,state.nl5
+28. Function: NL5_IsRunning
+¡ð Objective: Check simulation status and current simulation time.
+¡ð Command: http://localhost/?NL5_IsRunning
+29. Function: NL5_GetDataSize
+¡ð Objective: Get the number of transient data points generated for trace "V(C1)".
+¡ð Command: http://localhost/?NL5_GetDataSize,V(C1)
+30. Function: NL5_GetDataAt
+¡ð Objective: Retrieve 50 raw data points of trace 0 starting from the 100th point.
+¡ð Command: http://localhost/?NL5_GetDataAt,0,start=100,points=50
+31. Function: NL5_GetData
+¡ð Objective: Get interpolated data for trace "V(out)" between 0s and 0.01s with a step of 10u.
+¡ð Command: http://localhost/?NL5_GetData,V(out),from=0,to=0.01,step=10u
+32. Function: NL5_AddData
+¡ð Objective: Add a time/value pair (t=1, v=2.5) to a data-type trace.
+¡ð Command: http://localhost/?NL5_AddData,Data1,1,2.5
+33. Function: NL5_Export
+¡ð Objective: Export data for specific traces (V(R1), I(R2)) to "result.csv" from 1s to 3.3s with a 0.05s step.
+¡ð Command: http://localhost/?NL5_Export,result.csv,V(R1),I(R2),from=1,to=3.3,step=0.05
+34. Function: NL5_GetStorageSize
+¡ð Objective: Get the number of stored historical data sets for transient simulation.
+¡ð Command: http://localhost/?NL5_GetStorageSize
+35. Function: NL5_Store
+¡ð Objective: Store the current simulation data in a storage area named "Case1".
+¡ð Command: http://localhost/?NL5_Store,Case1
+36. Function: NL5_DeleteStorage
+¡ð Objective: Delete all saved historical data.
+¡ð Command: http://localhost/?NL5_DeleteStorage
+III. AC Simulation Instructions
+37. Function: NL5_GetACTracesSize
+¡ð Objective: Get the total number of AC traces.
+¡ð Command: http://localhost/?NL5_GetACTracesSize
+38. Function: NL5_AddACTrace
+¡ð Objective: Add an impedance (Z) signal trace for component C1.
+¡ð Command: http://localhost/?NL5_AddACTrace,Z,C1
+39. Function: NL5_DeleteACTrace
+¡ð Objective: Delete the AC trace named "Z(L1)".
+¡ð Command: http://localhost/?NL5_DeleteACTrace,Z(L1)
+40. Function: NL5_GetACTrace
+¡ð Objective: Get AC trace information based on index 1.
+¡ð Command: http://localhost/?NL5_GetACTrace,1
+41. Function: NL5_GetACTraceValue
+¡ð Objective: Get the value of AC trace 0 at 1000Hz.
+¡ð Command: http://localhost/?NL5_GetACTraceValue,0,1000
+42. Function: NL5_SetACTrace
+¡ð Objective: Set AC trace properties, such as hiding all AC traces.
+¡ð Command: http://localhost/?NL5_SetACTrace,all,show=off
+43. Function: NL5_ShowAC
+¡ð Objective: Display the AC simulation results window.
+¡ð Command: http://localhost/?NL5_ShowAC
+44. Function: NL5_SetACScreen
+¡ð Objective: Set the AC window to display dB on the vertical axis and set the start frequency to 10Hz.
+¡ð Command: http://localhost/?NL5_SetACScreen,left=10,db=on
+45. Function: NL5_ACCursors
+¡ð Objective: Display cursors in the AC window and set the right cursor position to 100k.
+¡ð Command: http://localhost/?NL5_ACCursors,on,right=100k
+46. Function: NL5_StartAC
+¡ð Objective: Specify V1 as the AC source and run a 100-point AC simulation from 10Hz to 1MHz.
+¡ð Command: http://localhost/?NL5_StartAC,source=V1,from=10,to=1M,points=100
+47. Function: NL5_StopAC
+¡ð Objective: Stop the current AC simulation.
+¡ð Command: http://localhost/?NL5_StopAC
+48. Function: NL5_GetACDataSize
+¡ð Objective: Get the number of data points for AC trace at index 0.
+¡ð Command: http://localhost/?NL5_GetACDataSize,0
+49. Function: NL5_GetACDataAt
+¡ð Objective: Retrieve the frequency, magnitude, and phase of the first data point for trace "Z(C1)".
+¡ð Command: http://localhost/?NL5_GetACDataAt,Z(C1),start=0,points=1
+50. Function: NL5_GetACStorageSize
+¡ð Objective: Get the number of stored historical AC data sets.
+¡ð Command: http://localhost/?NL5_GetACStorageSize
+51. Function: NL5_StoreAC
+¡ð Objective: Store the current AC simulation results in the storage area.
+¡ð Command: http://localhost/?NL5_StoreAC
+52. Function: NL5_DeleteACStorage
+¡ð Objective: Delete the specified 1st group of stored historical AC data.
+¡ð Command: http://localhost/?NL5_DeleteACStorage,1
